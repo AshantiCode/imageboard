@@ -1,10 +1,36 @@
 <!doctype html>
 <html>
+
 <head>
-    <title></title>
+    <title>Image Board</title>
+    <!-- <link rel="stylesheet" href="/styles/styles.css"> -->
 </head>
+
 <body>
+    <div id="main">
+        <div class="title" id='title'>{{title}}</div>
+
+        <form autocomplete="off">
+            <input v-model='form.title' type='text' name='title' placeholder='title'>
+            <input v-model='form.name' type='text' name='name' placeholder='title'>
+            <input v-model='form.description' type='text' name='description' placeholder='title'>
+            <input type='file' accept='image/*' id='file'>
+            <button @click='uploadFile'>uploads!</button>
+        </form>
+
+
+        <div class="container">
+            <div class="cards" v-if="results.length > 0">
+                <div class="images__container" v-for="result in results">
+                    <img class="image" :src="result.url"/>
+                    <p class="title">{{result.title}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
+    <script src="/js/scripts.js"></script>
 </body>
+
 </html>
