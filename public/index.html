@@ -3,27 +3,33 @@
 
 <head>
     <title>Image Board</title>
-    <!-- <link rel="stylesheet" href="/styles/styles.css"> -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div id="main">
-        <div class="title" id='title'>{{title}}</div>
+        <h1 class="title" id='title'>{{title}}</h1>
 
         <form autocomplete="off">
-            <input v-model='form.title' type='text' name='title' placeholder='title'>
-            <input v-model='form.name' type='text' name='name' placeholder='title'>
-            <input v-model='form.description' type='text' name='description' placeholder='title'>
+            <label for="title">Title</label>
+            <input v-model='form.title' type='text' name='title' id='title'>
+
+            <label for="username">Username</label>
+            <input v-model='form.username' type='text' name='username' id='username'>
+
+            <label for="description">Description</label>
+            <input v-model='form.description' type='text' name='description' id='description'>
+
             <input type='file' accept='image/*' id='file'>
-            <button @click='uploadFile'>uploads!</button>
+            <button @click='uploadFile'>upload!</button>
         </form>
 
 
         <div class="container">
-            <div class="cards" v-if="results.length > 0">
-                <div class="images__container" v-for="result in results">
-                    <img class="image" :src="result.url"/>
-                    <p class="title">{{result.title}}</p>
+            <div class="cards" v-if="images.length > 0">
+                <div class="image-container" v-for="image in images">
+                    <img class="image" v-bind:src="image.url"/>
+                    <p class="title">{{image.title}}</p>
                 </div>
             </div>
         </div>

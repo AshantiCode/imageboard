@@ -1,11 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const db = require('./db.js');
+const db = require('./db');
 const multer = require('multer');
 const path = require('path');
 const ca = require('chalk-animation');
-const { getImages } = require('./db');
 const s3 = require('./s3');
+const uidSafe = require('uid-safe');
+const config = require('./config');
 
 const app = express();
 
@@ -35,26 +36,30 @@ app.get('/', (req, res) => {
 });
 
 app.get('/images', (req, res) => {
-  getImages()
+  db.getImages()
     .then(data => {
-      res.json(data);
+      console.log('data rows:', data);
+      res.json(data.rows);
     })
     .catch(err => {
       console.log('Error in get images:', err);
     });
 });
 
-app.post('upload', uploader.single('file'), s3.upload, (req,res) => {
+app.post('/upload', uploader.single('file'), s3.upload, (req, res) => {
+  console.log('image upload req.body:', req.body);
   db.addImage(
-    req.body.title
-    req.body.username
-    req.body.desc
-    config.s3Url + req.file.filename
-  ).then(
-    ({rows}) => {
-      res.json(rows[0]);
-    }
+    config.s3Url + req.file.filename,
+    req.body.username,
+    req.body.title,
+    req.body.description
   )
+    .then(({ rows }) => {
+      res.json(rows[0]);
+    })
+    .catch(err => {
+      console.log('err in post upload:', err);
+    });
 });
 
 app.listen(8080, () => ca.rainbow('Yo, I am listening on 8080'));

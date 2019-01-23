@@ -1,0 +1,19 @@
+body {
+  background: url('img/getting-started-pwa-vue.png') repeat center;
+}
+
+.container {
+  width: 600px;
+}
+.cards {
+  width: 300px;
+  border: 2px solid #435466;
+}
+.image-container {
+  width: 300px;
+  border: 2px solid red;
+  margin-top: 50px;
+}
+.image {
+  width: 100%;
+}
