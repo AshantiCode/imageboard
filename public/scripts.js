@@ -24,12 +24,12 @@ new Vue({
       this.imageId = imageId;
     },
     closeModal: function() {
-      console.log('CLicked on Modal!!!!');
+      console.log('received close from child and closed Modal!!!!');
       this.imageId = null;
     },
 
     uploadFile: function(e) {
-      e.preventDefault(); //button does not reload page anymore
+      // e.preventDefault(); //button does not reload page anymore
       console.log('this: ', this);
       //it refers to my vue instance
       console.log('only the description:', this.form.description);
@@ -53,7 +53,13 @@ new Vue({
         .catch(err => {
           console.log('Error in uploadFile: ', err);
         });
-    } //closes uploadFile
+
+      //lines below clear the input-fields after upload
+      this.form.title = '';
+      this.form.username = '';
+      this.form.description = '';
+      file.value = '';
+    } //closes uploadFile;
   } //closes methods
 }); // closes Vue instance
 
@@ -74,9 +80,10 @@ Vue.component('image-modal', {
     console.log('Image modal has mounted');
   },
   methods: {
-    closeModal1: function() {
-      console.log('CLicked on Modal!!!!');
-      this.$emit('close');
+    sendCloseToParent: function() {
+      console.log('Send close to parent!!!!');
+      // this.$emit('close');
+      this.$emit('closefrommodal');
     }
   },
 

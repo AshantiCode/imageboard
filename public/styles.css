@@ -54,7 +54,7 @@ button:active {
   /* grid-auto-rows: 200px; */
   /* grid-auto-rows: minmax(min-content, max-content); */
   grid-gap: 15px;
-  /* align-items: start; */
+  align-items: start;
   /* border: 2px solid #435466; */
 }
 

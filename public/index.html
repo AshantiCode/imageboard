@@ -9,7 +9,7 @@
 <body>
     <div id="main">
 
-        <image-modal v-if="imageId" v-bind:id="imageId" @close='closeModal'></image-modal>
+        <image-modal v-if="imageId" v-bind:id="imageId" @closefrommodal='closeModal'></image-modal>
         
         <h1 class="title" id='title'>Whate<span>v</span>er Images</h1>
 
@@ -18,7 +18,7 @@
             <input type='file' accept='image/*' id='file'>
 
             <label for="title">Title</label>
-            <input v-model='form.title' type='text' name='title' id='title'>
+            <input v-model='form.title' type='text' name='title' id='title' value = ''>
 
             <label for="username">Username</label>
             <input v-model='form.username' type='text' name='username' id='username'>
@@ -26,7 +26,7 @@
             <label for="description">Description</label>
             <input v-model='form.description' type='text' name='description' id='description'>
 
-            <button class='button' @click='uploadFile'>upload!</button>
+            <button class='button' @click.prevent='uploadFile'>upload!</button>
         </form>
 
 
@@ -45,7 +45,7 @@
     </div> <!--closes vue app-->
 
     <script id="image-modal" type="text/x-template">
-    <div class="modal" @click="closeModal1" ></div>
+    <div class="modal" @click="sendCloseToParent" ></div>
     </script>
 
 
