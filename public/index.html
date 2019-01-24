@@ -8,6 +8,9 @@
 
 <body>
     <div id="main">
+
+        <image-modal v-if="imageId" v-bind:id="imageId" @close='closeModal'></image-modal>
+        
         <h1 class="title" id='title'>Whate<span>v</span>er Images</h1>
 
         <form autocomplete="off">
@@ -29,8 +32,8 @@
 
         
             <div class="grid-container" v-if="images.length > 0">
-                
-                    <div class="image-container" v-for="image in images">
+             
+                    <div class="image-container" @click='getId(image.id)' v-for="image in images">
                         <p class="title"> Title: {{ image.title }}</p>
                         <img class="image" v-bind:src="image.url"/>
                         <p class="description"> {{ image.description }}</p>
@@ -40,9 +43,16 @@
             </div>
 
     </div> <!--closes vue app-->
+
+    <script id="image-modal" type="text/x-template">
+    <div class="modal" @click="closeModal1" ></div>
+    </script>
+
+
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
-    <script src="/js/scripts.js"></script>
+    <!-- <script src="/imagemodal.js"></script> -->
+    <script src="/scripts.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 body {
   background: url('img/getting-started-pwa-vue.png') repeat center fixed;
   color: #435466;
-  padding: 0 1.4rem;
+  padding: 0 2rem;
 }
 
 /* .container {
@@ -82,10 +82,10 @@ button:active {
   max-height: 400px;
   border-top: 2px solid #435466;
   border-bottom: 2px solid #435466;
-  transition: all 0.2s ease-in-out;
+  /* transition: all 0.2s ease-in-out; */
 }
 .image:hover {
-  transform: scale(1.2);
+  /* transform: scale(1.2); */
 }
 .title {
   padding: 0.5rem;
@@ -100,4 +100,13 @@ button:active {
   bottom: 5px;
   right: 5px;
   color: #435466;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10;
 }
