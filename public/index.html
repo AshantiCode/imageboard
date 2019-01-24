@@ -8,9 +8,12 @@
 
 <body>
     <div id="main">
-        <h1 class="title" id='title'>{{title}}</h1>
+        <h1 class="title" id='title'>Whate<span>v</span>er Images</h1>
 
         <form autocomplete="off">
+
+            <input type='file' accept='image/*' id='file'>
+
             <label for="title">Title</label>
             <input v-model='form.title' type='text' name='title' id='title'>
 
@@ -20,20 +23,23 @@
             <label for="description">Description</label>
             <input v-model='form.description' type='text' name='description' id='description'>
 
-            <input type='file' accept='image/*' id='file'>
-            <button @click='uploadFile'>upload!</button>
+            <button class='button' @click='uploadFile'>upload!</button>
         </form>
 
 
-        <div class="container">
-            <div class="cards" v-if="images.length > 0">
-                <div class="image-container" v-for="image in images">
-                    <img class="image" v-bind:src="image.url"/>
-                    <p class="title">{{image.title}}</p>
-                </div>
+        
+            <div class="grid-container" v-if="images.length > 0">
+                
+                    <div class="image-container" v-for="image in images">
+                        <p class="title"> Title: {{ image.title }}</p>
+                        <img class="image" v-bind:src="image.url"/>
+                        <p class="description"> {{ image.description }}</p>
+                        <p class="username">uploaded by: {{ image.username }}</p>
+                    </div>
+              
             </div>
-        </div>
-    </div>
+
+    </div> <!--closes vue app-->
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
     <script src="/js/scripts.js"></script>

@@ -38,8 +38,8 @@ app.get('/', (req, res) => {
 app.get('/images', (req, res) => {
   db.getImages()
     .then(data => {
-      console.log('data rows:', data);
-      res.json(data.rows);
+      console.log('data rows in app GET:', data);
+      res.json(data.rows.reverse());
     })
     .catch(err => {
       console.log('Error in get images:', err);

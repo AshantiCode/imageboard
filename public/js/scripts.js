@@ -2,7 +2,6 @@
   new Vue({
     el: '#main',
     data: {
-      title: 'Whatever Images',
       images: [],
       form: {
         title: '',
