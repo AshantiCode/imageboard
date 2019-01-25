@@ -38,7 +38,6 @@ app.get('/', (req, res) => {
 app.get('/images', (req, res) => {
   db.getImages()
     .then(data => {
-      console.log('data rows in app GET:', data);
       res.json(data.rows.reverse());
     })
     .catch(err => {
@@ -47,23 +46,24 @@ app.get('/images', (req, res) => {
 });
 
 app.get('/image/:id', (req, res) => {
-  console.log('req.params in app get modal: ', req.params);
   db.getImageInfo(req.params.id).then(results => {
-    console.log('result in getImageInfo: ', results);
     res.json(results.rows);
   });
 });
 
 app.post('/upload', uploader.single('file'), s3.upload, (req, res) => {
-  console.log('image upload req.body:', req.body);
   db.addImage(config.s3Url + req.file.filename, req.body.username, req.body.title, req.body.description)
     .then(({ rows }) => {
-      console.log('rows from addImage:', rows[0]);
       res.json(rows[0]);
     })
     .catch(err => {
       console.log('err in post upload:', err);
     });
+});
+
+app.post('/comments', (req, res) => {
+  console.log('POST req.body Comments: ', req.body);
+  db.addComment(req.body.comment, req.body.username, req.body.id);
 });
 
 app.listen(8080, () => ca.rainbow('Yo, I am listening on 8080'));

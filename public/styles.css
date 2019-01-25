@@ -169,3 +169,7 @@ button:active {
   font-weight: bold;
   border-bottom: 0.5px solid black;
 }
+.comment-input {
+  /* position: relative;
+  z-index: 30; */
+}

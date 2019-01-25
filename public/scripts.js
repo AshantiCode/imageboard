@@ -1,3 +1,5 @@
+// import { DH_UNABLE_TO_CHECK_GENERATOR } from 'constants';
+
 new Vue({
   el: '#main',
   data: {
@@ -73,6 +75,11 @@ Vue.component('image-modal', {
         username: '',
         url: '',
         id: ''
+      },
+      comments: [],
+      comment: {
+        username: '',
+        comment: ''
       }
     };
   },
@@ -83,7 +90,7 @@ Vue.component('image-modal', {
     var self = this;
     axios
       .get('/image/' + self.id)
-      // .get('/modal/' + this.id)
+
       .then(function(respond) {
         console.log('res from axios modal:', respond);
         self.image.url = respond.data[0].url;
@@ -98,8 +105,26 @@ Vue.component('image-modal', {
   },
 
   methods: {
+    postComment: function(e) {
+      e.preventDefault();
+      let self = this;
+      console.log('this is postComment: ', this);
+      axios
+        .post('/comments', {
+          comment: self.comment.comment,
+          username: self.comment.username,
+          id: self.id
+        })
+        .then(function(result) {
+          console.log('result POST Comment: ', result);
+          self.comments.unshift(result.data.result);
+          (self.comment.comment = ''), (self.comment.username = '');
+        }); // results are from res.json(results) from db.postComment and go into then
+    },
+
     sendCloseToParent: function() {
       console.log('Send close to parent!!!!');
+      console.log('this in sendcloseto parten: ', this);
       //events from $emit always in lowercase ,no CamelCase!
       this.$emit('close-from-modal');
     }

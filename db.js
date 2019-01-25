@@ -29,3 +29,12 @@ module.exports.addImage = (url, username, title, description) => {
 module.exports.getImageInfo = id => {
   return db.query(`SELECT * FROM images WHERE id = $1`, [id]);
 };
+
+// ADD  COMMENT
+module.exports.addComment = (comment, username, image_id) => {
+  return db.query(`INSERT INTO comments (comment, username, image_id) VALUES ($1, $2, $3)`, [
+    comment,
+    username,
+    image_id
+  ]);
+};

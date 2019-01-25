@@ -52,7 +52,7 @@
     </div> <!--closes vue app-->
 
     <script id="image-modal" type="text/x-template">
-    <div class="modal" @click="sendCloseToParent" >
+    <div class="modal" @click.self="sendCloseToParent" >
         <button id='close-btn' @click='sendCloseToParent'>X</button>
 
         <div class='modal-container'>
@@ -63,12 +63,15 @@
                 <p class='image-title'> {{ image.title }}</p>
                 <p> {{ image.description }}</p>
                 <p> uploaded by: {{ image.username }}</p>
+
+                <form>
+                    <input v-model='comment.comment' class='comment-input' type="text" placeholder='Add a comment'>
+                    <input v-model='comment.username' class='comment-input' type="text" placeholder = 'Your username'>
+                    <button class='button' @click ='postComment'>Add!</button>
+                </form>
             </div>
 
-            <form>
-                <input type="text">
-
-            </form>
+           
         </div> <!--closes modal-container-->
 
 
