@@ -46,15 +46,19 @@ app.get('/images', (req, res) => {
     });
 });
 
+app.get('/image/:id', (req, res) => {
+  console.log('req.params in app get modal: ', req.params);
+  db.getImageInfo(req.params.id).then(results => {
+    console.log('result in getImageInfo: ', results);
+    res.json(results.rows);
+  });
+});
+
 app.post('/upload', uploader.single('file'), s3.upload, (req, res) => {
   console.log('image upload req.body:', req.body);
-  db.addImage(
-    config.s3Url + req.file.filename,
-    req.body.username,
-    req.body.title,
-    req.body.description
-  )
+  db.addImage(config.s3Url + req.file.filename, req.body.username, req.body.title, req.body.description)
     .then(({ rows }) => {
+      console.log('rows from addImage:', rows[0]);
       res.json(rows[0]);
     })
     .catch(err => {

@@ -1,7 +1,7 @@
 new Vue({
   el: '#main',
   data: {
-    imageId: null,
+    imageId: '',
     images: [],
     form: {
       title: '',
@@ -29,16 +29,15 @@ new Vue({
     },
 
     uploadFile: function(e) {
-      // e.preventDefault(); //button does not reload page anymore
-      console.log('this: ', this);
-      //it refers to my vue instance
-      console.log('only the description:', this.form.description);
+      //still have access to Vue-Instance, see console.log
+      console.log('only the title:', this.form.title);
       var file = document.getElementById('file');
       var uploadedFile = file.files[0];
       //now we want to prepate the files by using API Form Data to then send them to the server with axious.
       var formData = new FormData();
+
+      // attach inputs to formData
       formData.append('file', uploadedFile);
-      console.log('formData: ', formData);
       formData.append('title', this.form.title);
       formData.append('description', this.form.description);
       formData.append('username', this.form.username);
@@ -62,30 +61,47 @@ new Vue({
     } //closes uploadFile;
   } //closes methods
 }); // closes Vue instance
+//  ##################################################################################
 
 Vue.component('image-modal', {
+  template: '#image-modal',
   data: function() {
     return {
       image: {
         title: '',
         description: '',
         username: '',
-        url: ''
+        url: '',
+        id: ''
       }
     };
   },
   props: ['id'],
-
   mounted: function() {
     console.log('Image modal has mounted');
+
+    var self = this;
+    axios
+      .get('/image/' + self.id)
+      // .get('/modal/' + this.id)
+      .then(function(respond) {
+        console.log('res from axios modal:', respond);
+        self.image.url = respond.data[0].url;
+        self.image.id = respond.data[0].id;
+        self.image.username = respond.data[0].username;
+        self.image.title = respond.data[0].title;
+        self.image.description = respond.data[0].description;
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
   },
+
   methods: {
     sendCloseToParent: function() {
       console.log('Send close to parent!!!!');
-      // this.$emit('close');
-      this.$emit('closefrommodal');
+      //events from $emit always in lowercase ,no CamelCase!
+      this.$emit('close-from-modal');
     }
-  },
-
-  template: '#image-modal'
+  }
 }); //closing component

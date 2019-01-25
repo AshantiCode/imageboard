@@ -9,7 +9,7 @@
 <body>
     <div id="main">
 
-        <image-modal v-if="imageId" v-bind:id="imageId" @closefrommodal='closeModal'></image-modal>
+        <image-modal v-if="imageId" v-bind:id="imageId" @close-from-modal='closeModal'></image-modal>
         
         <h1 class="title" id='title'>Whate<span>v</span>er Images</h1>
 
@@ -31,21 +31,51 @@
 
 
         
-            <div class="grid-container" v-if="images.length > 0">
+            <div class="flex-container" v-if="images.length > 0">
              
-                    <div class="image-container" @click='getId(image.id)' v-for="image in images">
-                        <p class="title"> Title: {{ image.title }}</p>
-                        <img class="image" v-bind:src="image.url"/>
-                        <p class="description"> {{ image.description }}</p>
-                        <p class="username">uploaded by: {{ image.username }}</p>
-                    </div>
+                    <div class="card" @click='getId(image.id)' v-for="image in images">
+
+                        <div class="card-img">
+                            <img class="image" v-bind:src="image.url"/>
+                        </div>
+
+                        <div class="card-text">
+                            <p class="title"> Title: {{ image.title }}</p>
+                            <p class="description"> {{ image.description }}</p>
+                            <p class="username">uploaded by: {{ image.username }}</p>
+                        </div>
+
+                    </div> <!--closes card-->
               
             </div>
 
     </div> <!--closes vue app-->
 
     <script id="image-modal" type="text/x-template">
-    <div class="modal" @click="sendCloseToParent" ></div>
+    <div class="modal" @click="sendCloseToParent" >
+        <button id='close-btn' @click='sendCloseToParent'>X</button>
+
+        <div class='modal-container'>
+            <div class="modal-image-container">
+                <img class='modal-image' :src= image.url />
+            </div>
+            <div class="modal-text-container">
+                <p class='image-title'> {{ image.title }}</p>
+                <p> {{ image.description }}</p>
+                <p> uploaded by: {{ image.username }}</p>
+            </div>
+
+            <form>
+                <input type="text">
+
+            </form>
+        </div> <!--closes modal-container-->
+
+
+
+
+
+    </div> <!--closes modal-->
     </script>
 
 
