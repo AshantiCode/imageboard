@@ -3,11 +3,12 @@
 
 <head>
     <title>Image Board</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles2.css">
 </head>
 
 <body>
-    <div id="main">
+    <div class="wrapper">
+        <div id="main">
 
         <image-modal v-if="imageId" v-bind:id="imageId" @close-from-modal='closeModal'></image-modal>
         
@@ -31,26 +32,28 @@
 
 
         
-            <div class="flex-container" v-if="images.length > 0">
-             
-                    <div class="card" @click='getId(image.id)' v-for="image in images">
+        <div class="flex-container" v-if="images.length > 0">
+            
+            <div class="card" @click='getId(image.id)' v-for="image in images"  >
 
-                        <div class="card-img">
-                            <img class="image" v-bind:src="image.url"/>
-                        </div>
+                <div class="card-img" >  
+                    <img class='image' v-bind:src ='image.url'>
+                </div>
+                <div class="card-text">
+                    <p class="title"> {{ image.title }}</p>
+                    <p class="description"> {{ image.description }}</p>
+                    <p class="username">uploaded by: {{ image.username }}</p>
+                </div>
 
-                        <div class="card-text">
-                            <p class="title"> Title: {{ image.title }}</p>
-                            <p class="description"> {{ image.description }}</p>
-                            <p class="username">uploaded by: {{ image.username }}</p>
-                        </div>
-
-                    </div> <!--closes card-->
-              
-            </div>
+            </div> <!--closes card-->
+            
+        </div>
 
     </div> <!--closes vue app-->
 
+
+    </div>
+    <
     <script id="image-modal" type="text/x-template">
     <div class="modal" @click.self="sendCloseToParent" >
         <button id='close-btn' @click='sendCloseToParent'>X</button>
