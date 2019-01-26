@@ -38,3 +38,8 @@ module.exports.addComment = (comment, username, image_id) => {
     image_id
   ]);
 };
+
+//GET COMMENT
+module.exports.getImageComments = image_id => {
+  return db.query(`SELECT * FROM comments WHERE image_id = $1`, [image_id]);
+};

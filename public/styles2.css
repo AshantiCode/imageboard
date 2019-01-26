@@ -111,8 +111,9 @@ button:active {
   background: rgba(0, 0, 0, 0.8);
   z-index: 10;
 }
-.modal-container {
-  width: 90%;
+.modal-flex-container {
+  width: 850px;
+  /* width: auto; */
   /* height: 600px; */
   height: auto;
   display: flex;
@@ -145,4 +146,21 @@ button:active {
 }
 .comment-box {
   border: 2px solid green;
+}
+.comment-button {
+  display: inline-block;
+  border: none;
+  padding: 0.3rem 1rem;
+  margin-left: 10px;
+  text-decoration: none;
+  background: #42b883;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  border-radius: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }

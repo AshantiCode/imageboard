@@ -39,8 +39,6 @@
                 </div>
                 <div class="card-text">
                     <p class="card-title"> {{ image.title }}</p>
-                    <!-- <p class="description"> {{ image.description }}</p>
-                    <p class="username">uploaded by: {{ image.username }}</p> -->
                 </div>
 
             </div> <!--closes card-->
@@ -57,33 +55,47 @@
         <div class="modal" @click.self="sendCloseToParent" >
             <button id='close-btn' @click='sendCloseToParent'>X</button>
 
-            <div class='modal-container'>
+            <div class='modal-flex-container'>
 
                 <div class="modal-image-container">
                     <img class='modal-image' :src= image.url />
-                    <form>
+
+                        <p class='modal-title'> {{ image.title }}</p>
+                        <p> {{ image.description }}</p>
+                        <p> uploaded by: {{ image.username }}</p>
+
+                    <!-- <form>
                         <input v-model='comment.comment' class='comment-input' type="text" placeholder='Add a comment'>
                         <input v-model='comment.username' class='comment-input' type="text" placeholder='Your username'>
                         <button class='button' @click='postComment'>Add!</button>
                     </form>
-                    <div class='comment-box' v-for= 'comment in comments'>
-                    
-                        <p> {{ comment.username }} : {{comment.comment}} </p>
-                       
-                    </div>
-                </div>
-        
-<!-- Display Comment in the Browser-->
-            
                    
+                    <ul v-for='comment in comments'>
+                        <li><p> {{ comment.username }} : {{comment.comment}} </p></li>
+                    </ul> -->
+                        
+                       
+                    
+                </div>
 
-              
-
-                <div class="modal-text-container">
+        <div class="modal-text-container">
+            <form>
+                <input v-model='comment.comment' class='comment-input' type="text" placeholder='Add a comment'>
+                <input v-model='comment.username' class='comment-input' type="text" placeholder='Your username'>
+                <button class='comment-button' @click='postComment'>Add!</button>
+            </form>
+            
+            <ul v-for='comment in comments'>
+                <li>
+                    <p> {{ comment.username }} : {{comment.comment}} </p>
+                </li>
+            </ul>
+        </div>
+                <!-- <div class="modal-text-container">
                     <p class='modal-title'> {{ image.title }}</p>
                     <p> {{ image.description }}</p>
-                    <p> uploaded by: {{ image.username }}</p>
-                </div>
+                    <p> uploaded by: {{ image.username }}</p> -->
+                <!-- </div> -->
 
                 <!-- <form>
                     <input v-model='comment.comment' class='comment-input' type="text" placeholder='Add a comment'>

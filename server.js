@@ -61,9 +61,16 @@ app.post('/upload', uploader.single('file'), s3.upload, (req, res) => {
     });
 });
 
-app.post('/comments', (req, res) => {
+app.post('/comments/:id', (req, res) => {
   console.log('POST req.body Comments: ', req.body);
   db.addComment(req.body.comment, req.body.username, req.body.id);
+});
+
+app.get('/comments/:id', (req, res) => {
+  console.log('GET Comments req params id:', req.params.id);
+  db.getImageComments(req.params.id).then(results => {
+    res.json(results.rows);
+  });
 });
 
 app.listen(8080, () => ca.rainbow('Yo, I am listening on 8080'));
