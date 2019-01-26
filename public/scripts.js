@@ -117,7 +117,8 @@ Vue.component('image-modal', {
         })
         .then(function(result) {
           console.log('result POST Comment: ', result);
-          self.comments.unshift(result.data.result);
+          self.comments.unshift(result.data[0]);
+          // self.comments.unshift(result.data.result);
           (self.comment.comment = ''), (self.comment.username = '');
         }); // results are from res.json(results) from db.postComment and go into then
     },

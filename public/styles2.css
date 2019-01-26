@@ -1,9 +1,9 @@
 body {
-  background: rgb(27, 24, 24);
-  color: #a5a7aa;
+  background: rgb(203, 203, 203);
   padding: 0 2rem;
   box-sizing: border-box;
   margin: 0;
+  color: #535353;
 }
 .wrapper {
   max-width: 960px;
@@ -54,6 +54,54 @@ button:active {
   transform: scale(0.99);
 }
 
+.flex-container {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+}
+.card {
+  /* background: #fff; */
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid yellow; */
+  width: 204px;
+  background: rgb(248, 246, 246);
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+  transition: 0.2s ease-in-out;
+  height: 293px;
+}
+.card:hover {
+  transform: scale(1.1);
+}
+.card-img {
+  position: relative;
+  width: 204px;
+  height: 200px;
+  overflow: hidden;
+  /* border: 2px solid red; */
+}
+.card-text {
+  /* border: 2px solid blue; */
+  padding: 1rem;
+}
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 5px;
+}
+.image {
+  /* border: 2px solid white; */
+  position: absolute;
+  /* max-width: 100%; */
+  width: 150%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .modal {
   position: fixed;
   top: 0;
@@ -63,48 +111,38 @@ button:active {
   background: rgba(0, 0, 0, 0.8);
   z-index: 10;
 }
-.flex-container {
-  flex-wrap: wrap;
-  display: flex;
-  justify-content: space-between;
-}
-.card {
-  /* background: #fff; */
-  display: flex;
-  flex-direction: column;
-}
-.card-img {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-}
-.image {
-  /* border: 2px solid white; */
-  position: absolute;
-  max-width: 100%;
-  width: 100%;
+.modal-container {
+  width: 90%;
+  /* height: 600px; */
   height: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-/* 
-.card-img {
-  height: 200px;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  margin: 0 auto 200px;
   overflow: hidden;
-  position: relative;
-  width: 100%;
+  background-color: black;
+  border: 2px solid blue;
 }
-.image {
-  height: auto;
-  left: 50%;
-  max-height: none;
-  max-width: none;
-  min-height: 100%;
-  min-width: 100%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: auto;
-} */
+
+.modal-image-container {
+  /* width: 500px; sonst ist verzerrt */
+  /* max-height: 500px; */
+  border: 2px solid red;
+}
+.modal-image {
+  width: 100%;
+  max-height: 400px;
+  border: 3px dashed orange;
+}
+.modal-text-container {
+  padding: 0.2rem 1rem;
+  color: white;
+  border: 2px solid yellow;
+}
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.comment-box {
+  border: 2px solid green;
+}

@@ -15,7 +15,6 @@
         <h1 class="title" id='title'>Whate<span>v</span>er Images</h1>
 
         <form autocomplete="off">
-
             <input type='file' accept='image/*' id='file'>
 
             <label for="title">Title</label>
@@ -26,12 +25,11 @@
 
             <label for="description">Description</label>
             <input v-model='form.description' type='text' name='description' id='description'>
-
             <button class='button' @click.prevent='uploadFile'>upload!</button>
         </form>
 
 
-        
+        <!-- Display the Content in the Browser-->        
         <div class="flex-container" v-if="images.length > 0">
             
             <div class="card" @click='getId(image.id)' v-for="image in images"  >
@@ -40,9 +38,9 @@
                     <img class='image' v-bind:src ='image.url'>
                 </div>
                 <div class="card-text">
-                    <p class="title"> {{ image.title }}</p>
-                    <p class="description"> {{ image.description }}</p>
-                    <p class="username">uploaded by: {{ image.username }}</p>
+                    <p class="card-title"> {{ image.title }}</p>
+                    <!-- <p class="description"> {{ image.description }}</p>
+                    <p class="username">uploaded by: {{ image.username }}</p> -->
                 </div>
 
             </div> <!--closes card-->
@@ -55,33 +53,53 @@
     </div>
     <
     <script id="image-modal" type="text/x-template">
-    <div class="modal" @click.self="sendCloseToParent" >
-        <button id='close-btn' @click='sendCloseToParent'>X</button>
 
-        <div class='modal-container'>
-            <div class="modal-image-container">
-                <img class='modal-image' :src= image.url />
-            </div>
-            <div class="modal-text-container">
-                <p class='image-title'> {{ image.title }}</p>
-                <p> {{ image.description }}</p>
-                <p> uploaded by: {{ image.username }}</p>
+        <div class="modal" @click.self="sendCloseToParent" >
+            <button id='close-btn' @click='sendCloseToParent'>X</button>
 
-                <form>
+            <div class='modal-container'>
+
+                <div class="modal-image-container">
+                    <img class='modal-image' :src= image.url />
+                    <form>
+                        <input v-model='comment.comment' class='comment-input' type="text" placeholder='Add a comment'>
+                        <input v-model='comment.username' class='comment-input' type="text" placeholder='Your username'>
+                        <button class='button' @click='postComment'>Add!</button>
+                    </form>
+                    <div class='comment-box' v-for= 'comment in comments'>
+                    
+                        <p> {{ comment.username }} : {{comment.comment}} </p>
+                       
+                    </div>
+                </div>
+        
+<!-- Display Comment in the Browser-->
+            
+                   
+
+              
+
+                <div class="modal-text-container">
+                    <p class='modal-title'> {{ image.title }}</p>
+                    <p> {{ image.description }}</p>
+                    <p> uploaded by: {{ image.username }}</p>
+                </div>
+
+                <!-- <form>
                     <input v-model='comment.comment' class='comment-input' type="text" placeholder='Add a comment'>
                     <input v-model='comment.username' class='comment-input' type="text" placeholder = 'Your username'>
                     <button class='button' @click ='postComment'>Add!</button>
-                </form>
-            </div>
+                </form> -->
+            
 
-           
-        </div> <!--closes modal-container-->
-
-
+            
+            </div> <!--closes modal-container-->
 
 
 
-    </div> <!--closes modal-->
+
+
+        </div> <!--closes modal-->
     </script>
 
 
