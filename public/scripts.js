@@ -132,7 +132,7 @@
       sendCloseToParent: function() {
         console.log('Send close to parent!!!!');
         console.log('this in sendcloseto parten: ', this);
-        //events from $emit always in lowercase ,no CamelCase!
+        //events from $emit always in lowercase (in kebap-case),no CamelCase!
         this.$emit('close-from-modal');
       }
     }

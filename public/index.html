@@ -1,9 +1,13 @@
+
 <!doctype html>
 <html>
 
 <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Image Board</title>
-    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -12,7 +16,7 @@
 
             <image-modal v-if="imageId" v-bind:id="imageId" @close-from-modal='closeModal'></image-modal>
             
-            <h1 class="title" id='title'>Whate<span>v</span>er Images</h1>
+            <h1 class="title" id='title'>whate<span>v</span>er images</h1>
 
             <form autocomplete="off">
                 <input type='file' accept='image/*' id='file'>
@@ -56,23 +60,33 @@
 
                 <div class="modal-image-container">
                     <img class='modal-image' :src= image.url />
-                    <p class='modal-title'> {{ image.title }}</p>
-                    <p> {{ image.description }}</p>
-                    <p> uploaded by: {{ image.username }}</p>            
+                    <div class="modal-img-info">
+                        <p class='modal-title'> {{ image.title }}</p>
+                        <p> {{ image.description }}</p>
+                        <p class='image-credits'> Photo by: {{ image.username }} </p>
+                    </div>
+                    
                 </div>
 
                 <div class="modal-comment-container">
-                    <form>
+                    <form class='comment-form'>
                         <input v-model='comment.comment' class='comment-input' type="text" placeholder='Add a comment'>
                         <input v-model='comment.username' class='comment-input' type="text" placeholder='Your username'>
                         <button class='comment-button' @click='postComment'>Add!</button>
                     </form>
                 
-                    <ul v-for='comment in comments'>
+                    <!-- <ul v-for='comment in comments'>
                         <li>
                             <p> {{ comment.username }} : {{comment.comment}} </p>
                         </li>
-                    </ul>
+                    </ul> -->
+                    <div v-for='comment in comments'>
+                        <p class='username'> {{ comment.username }} says:</p>
+                        <div>
+                            <p class='comment'> {{ comment.comment }}</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
