@@ -63,12 +63,20 @@ app.post('/upload', uploader.single('file'), s3.upload, (req, res) => {
 
 app.post('/comments/:id', (req, res) => {
   console.log('POST req.body Comments: ', req.body);
-  db.addComment(req.body.comment, req.body.username, req.body.id);
+  db.addComment(req.body.comment, req.body.username, req.body.id)
+    .then(results => {
+      console.log('results from post comments: ', results);
+      res.json(results.rows);
+    })
+    .catch(err => {
+      console.log('Error in Post Comments/:id: ', err);
+    });
 });
 
 app.get('/comments/:id', (req, res) => {
   console.log('GET Comments req params id:', req.params.id);
   db.getImageComments(req.params.id).then(results => {
+    console.log('REsults in GET Comments to compare with post: ', results);
     res.json(results.rows);
   });
 });

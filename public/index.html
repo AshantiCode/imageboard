@@ -10,108 +10,74 @@
     <div class="wrapper">
         <div id="main">
 
-        <image-modal v-if="imageId" v-bind:id="imageId" @close-from-modal='closeModal'></image-modal>
-        
-        <h1 class="title" id='title'>Whate<span>v</span>er Images</h1>
-
-        <form autocomplete="off">
-            <input type='file' accept='image/*' id='file'>
-
-            <label for="title">Title</label>
-            <input v-model='form.title' type='text' name='title' id='title' value = ''>
-
-            <label for="username">Username</label>
-            <input v-model='form.username' type='text' name='username' id='username'>
-
-            <label for="description">Description</label>
-            <input v-model='form.description' type='text' name='description' id='description'>
-            <button class='button' @click.prevent='uploadFile'>upload!</button>
-        </form>
-
-
-        <!-- Display the Content in the Browser-->        
-        <div class="flex-container" v-if="images.length > 0">
+            <image-modal v-if="imageId" v-bind:id="imageId" @close-from-modal='closeModal'></image-modal>
             
-            <div class="card" @click='getId(image.id)' v-for="image in images"  >
+            <h1 class="title" id='title'>Whate<span>v</span>er Images</h1>
 
-                <div class="card-img" >  
-                    <img class='image' v-bind:src ='image.url'>
-                </div>
-                <div class="card-text">
-                    <p class="card-title"> {{ image.title }}</p>
-                </div>
+            <form autocomplete="off">
+                <input type='file' accept='image/*' id='file'>
 
-            </div> <!--closes card-->
+                <label for="title">Title</label>
+                <input v-model='form.title' type='text' name='title' id='title' value = ''>
+
+                <label for="username">Username</label>
+                <input v-model='form.username' type='text' name='username' id='username'>
+
+                <label for="description">Description</label>
+                <input v-model='form.description' type='text' name='description' id='description'>
+                <button class='button' @click.prevent='uploadFile'>upload!</button>
+            </form>
+
+
+               
+            <div class="flex-container" v-if="images.length > 0">
             
-        </div>
+                <div class="card" @click='getId(image.id)' v-for="image in images"  >
+                    <div class="card-img" >  
+                        <img class='image' v-bind:src ='image.url'>
+                    </div>
 
-    </div> <!--closes vue app-->
+                    <div class="card-text">
+                        <p class="card-title"> {{ image.title }}</p>
+                    </div>
+                </div> <!--closes card-->
+            </div>
+        </div> <!--closes  id main vue app-->
 
 
-    </div>
-    <
+    
+    
     <script id="image-modal" type="text/x-template">
 
-        <div class="modal" @click.self="sendCloseToParent" >
-            <button id='close-btn' @click='sendCloseToParent'>X</button>
+        <div class="modal" @click.self="sendCloseToParent">
+            <button class='close-btn' @click='sendCloseToParent'>X</button>
 
             <div class='modal-flex-container'>
 
                 <div class="modal-image-container">
                     <img class='modal-image' :src= image.url />
-
-                        <p class='modal-title'> {{ image.title }}</p>
-                        <p> {{ image.description }}</p>
-                        <p> uploaded by: {{ image.username }}</p>
-
-                    <!-- <form>
-                        <input v-model='comment.comment' class='comment-input' type="text" placeholder='Add a comment'>
-                        <input v-model='comment.username' class='comment-input' type="text" placeholder='Your username'>
-                        <button class='button' @click='postComment'>Add!</button>
-                    </form>
-                   
-                    <ul v-for='comment in comments'>
-                        <li><p> {{ comment.username }} : {{comment.comment}} </p></li>
-                    </ul> -->
-                        
-                       
-                    
-                </div>
-
-        <div class="modal-text-container">
-            <form>
-                <input v-model='comment.comment' class='comment-input' type="text" placeholder='Add a comment'>
-                <input v-model='comment.username' class='comment-input' type="text" placeholder='Your username'>
-                <button class='comment-button' @click='postComment'>Add!</button>
-            </form>
-            
-            <ul v-for='comment in comments'>
-                <li>
-                    <p> {{ comment.username }} : {{comment.comment}} </p>
-                </li>
-            </ul>
-        </div>
-                <!-- <div class="modal-text-container">
                     <p class='modal-title'> {{ image.title }}</p>
                     <p> {{ image.description }}</p>
-                    <p> uploaded by: {{ image.username }}</p> -->
-                <!-- </div> -->
+                    <p> uploaded by: {{ image.username }}</p>            
+                </div>
 
-                <!-- <form>
-                    <input v-model='comment.comment' class='comment-input' type="text" placeholder='Add a comment'>
-                    <input v-model='comment.username' class='comment-input' type="text" placeholder = 'Your username'>
-                    <button class='button' @click ='postComment'>Add!</button>
-                </form> -->
-            
+                <div class="modal-comment-container">
+                    <form>
+                        <input v-model='comment.comment' class='comment-input' type="text" placeholder='Add a comment'>
+                        <input v-model='comment.username' class='comment-input' type="text" placeholder='Your username'>
+                        <button class='comment-button' @click='postComment'>Add!</button>
+                    </form>
+                
+                    <ul v-for='comment in comments'>
+                        <li>
+                            <p> {{ comment.username }} : {{comment.comment}} </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-            
-            </div> <!--closes modal-container-->
 
-
-
-
-
-        </div> <!--closes modal-->
     </script>
 
 
