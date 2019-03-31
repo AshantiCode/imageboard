@@ -75,19 +75,18 @@ h1 {
   transition: all 0.2s ease-out;
 }
 .card:hover {
-  transform: scale(1.1);
+  filter: contrast(70%);
   background: rgba(248, 246, 246, 0.1);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
-  padding: 10px 5px 0;
 }
-@media (max-width: 580px) {
+@media (max-width: 620px) {
   .flex-container {
-    display: flex;
-    flex-direction: column;
+    display: static;
+    /* flex-direction: column; */
   }
   .card {
     /* width: 100%; */
-    display: flex;
+    display: static;
     flex-direction: column;
     margin: 1rem auto 1rem;
   }

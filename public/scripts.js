@@ -1,4 +1,4 @@
-// import { DH_UNABLE_TO_CHECK_GENERATOR } from 'constants';
+
 (function() {
   new Vue({
     el: '#main',
