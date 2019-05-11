@@ -7,7 +7,8 @@
 
 <h2>Demo</h2>
 
-![f7l4OqMZcj](https://user-images.githubusercontent.com/39802330/57571511-997dca00-740f-11e9-950f-f7680112a4ae.gif)
+![Image Board Demo](https://user-images.githubusercontent.com/39802330/57572297-802d4b80-7418-11e9-807b-1d2c456299b7.gif)
+
 
 <h2>Tech Stack</h2>
 <ul>
