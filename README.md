@@ -18,6 +18,7 @@
 <li>Node.js</li>
 <li>Amazon Web Services S3</li>
 <li>PostgreSQL</li>
+<li>CSS3</li>
 
 </ul>
 
