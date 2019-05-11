@@ -14,5 +14,5 @@
 
 </ul>
 
-<img alt data-canonical-src="http://g.recordit.co/f7l4OqMZcj.gif">
+<img  src="http://recordit.co/f7l4OqMZcj" alt data-canonical-src="http://g.recordit.co/f7l4OqMZcj.gif">
 
