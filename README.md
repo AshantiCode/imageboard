@@ -13,3 +13,6 @@
 <li>PostgreSQL</li>
 
 </ul>
+
+<img alt data-canonical-src="http://g.recordit.co/f7l4OqMZcj.gif">
+
